@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------
+   SafeDeal design system — deep violet dark theme.
+   All colors are HSL triplets consumed via hsl(var(--token)).
+------------------------------------------------------------------- */
+
+@layer base {
+  :root,
+  .dark {
+    --font-display: 'Space Grotesk', system-ui, sans-serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+    /* Surfaces */
+    --background: 252 24% 5%;
+    --foreground: 250 20% 95%;
+
+    --card: 252 18% 8%;
+    --card-foreground: 250 20% 95%;
+    --card-elevated: 252 16% 10%;
+
+    --popover: 252 18% 8%;
+    --popover-foreground: 250 20% 95%;
+
+    /* Accent — electric violet */
+    --primary: 258 92% 68%;
+    --primary-foreground: 252 24% 5%;
+    --primary-glow: 258 92% 68%;
+
+    --secondary: 252 14% 13%;
+    --secondary-foreground: 250 20% 92%;
+
+    --muted: 252 12% 13%;
+    --muted-foreground: 250 10% 58%;
+
+    --accent: 258 60% 18%;
+    --accent-foreground: 258 92% 82%;
+
+    --destructive: 0 72% 58%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 252 12% 15%;
+    --input: 252 12% 15%;
+    --ring: 258 92% 68%;
+
+    /* Deal status */
+    --status-active: 258 92% 68%;
+    --status-submitted: 38 95% 60%;
+    --status-completed: 152 60% 50%;
+    --status-cancelled: 0 0% 55%;
+    --status-unfunded: 200 80% 65%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 252 18% 8%;
+    --sidebar-foreground: 250 20% 95%;
+    --sidebar-primary: 258 92% 68%;
+    --sidebar-primary-foreground: 252 24% 5%;
+    --sidebar-accent: 252 14% 13%;
+    --sidebar-accent-foreground: 250 20% 92%;
+    --sidebar-border: 252 12% 15%;
+    --sidebar-ring: 258 92% 68%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-body);
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -20%, hsl(var(--primary) / 0.18), transparent 60%),
+      radial-gradient(ellipse 60% 40% at 100% 100%, hsl(var(--primary) / 0.06), transparent 60%);
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.35);
+  }
+}
+
+@layer components {
+  .font-display { font-family: var(--font-display); }
+  .font-mono { font-family: var(--font-mono); }
+
+  /* Subtle grid texture behind hero */
+  .grid-texture {
+    background-image:
+      linear-gradient(hsl(var(--foreground) / 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--foreground) / 0.035) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, black 30%, transparent 100%);
+  }
+
+  .card-surface {
+    background: linear-gradient(180deg, hsl(var(--card-elevated)), hsl(var(--card)));
+    border: 1px solid hsl(var(--border));
+    box-shadow:
+      0 1px 0 hsl(var(--foreground) / 0.03) inset,
+      0 12px 32px -16px hsl(252 40% 2% / 0.9);
+  }
+
+  .card-surface:hover {
+    border-color: hsl(var(--primary) / 0.35);
+    box-shadow:
+      0 1px 0 hsl(var(--foreground) / 0.04) inset,
+      0 16px 40px -16px hsl(var(--primary) / 0.25);
+  }
+
+  .glow-ring {
+    box-shadow: 0 0 0 1px hsl(var(--primary) / 0.5), 0 0 24px -4px hsl(var(--primary) / 0.5);
+  }
+}
+
+/* Wallet adapter modal — match theme */
+.wallet-adapter-modal-wrapper {
+  background: hsl(var(--card)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: var(--radius) !important;
+  font-family: var(--font-body) !important;
+}
+.wallet-adapter-modal-title {
+  color: hsl(var(--foreground)) !important;
+  font-family: var(--font-display) !important;
+}
+.wallet-adapter-modal-list .wallet-adapter-button {
+  background: hsl(var(--secondary)) !important;
+  color: hsl(var(--foreground)) !important;
+  border-radius: calc(var(--radius) - 2px) !important;
+  font-family: var(--font-body) !important;
+}
+.wallet-adapter-modal-list .wallet-adapter-button:hover {
+  background: hsl(var(--accent)) !important;
+}
+.wallet-adapter-modal-button-close {
+  background: hsl(var(--secondary)) !important;
+}
+.wallet-adapter-modal-list-more {
+  color: hsl(var(--muted-foreground)) !important;
+}
