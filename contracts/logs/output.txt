@@ -1,0 +1,36 @@
+
+
+  safe_deal escrow
+    ✔ initializes an open deal
+    ✔ initializes a deal with an assigned worker
+    ✔ rejects invalid initialize params
+    ✔ funds a deal and escrows lamports in the PDA
+    ✔ rejects funding by a non-creator
+    ✔ full flow: open deal claimed, approved with 2% fee
+    ✔ rejects submit by creator on open deal
+    ✔ rejects submit by non-assigned worker
+    ✔ rejects submit on unfunded deal, too long, or after deadline
+    ✔ rejects approve with wrong worker, wrong treasury, or wrong status
+    ✔ cancels a created (unfunded) deal
+    ✔ cancels a funded deal only after deadline with refund
+    ✔ cannot cancel a submitted deal
+    USDC escrow
+      ✔ initializes and funds a USDC deal in one transaction
+      ✔ rejects initialize_token_deal with a non-USDC mint
+      ✔ full USDC flow pays worker 98% and treasury 2%, creating ATAs and closing vault
+      ✔ cancel_token_deal: created anytime, funded only after deadline, submitted never
+      ✔ approve_token_deal rejects wrong worker and wrong treasury
+      ✔ cross-currency instructions fail with CurrencyMismatch
+      ✔ old-layout Deal accounts (no mint field) still cancel and decode with mint = null
+      price conversion (src/lib/priceMath)
+        ✔ converts USD to base units
+        ✔ converts base units to USD
+        ✔ computeFeeSplit mirrors the on-chain split
+        ✔ decodes PriceUpdateV2 (Full and Partial) and checks usability
+      frontend Deal codec (src/lib/dealCodec)
+        ✔ decodes the live devnet deal 65wHSw…J1nQ ("Page Redising", 672 bytes)
+        ✔ decodes an in-SVM deal identically to the Anchor coder and rejects bad data
+
+
+  26 passing (288ms)
+
